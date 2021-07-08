@@ -1,12 +1,29 @@
-const express = require('express')
+const path = require("path");
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
-const app = express()
+const userRouter = require("./routers/user");
 
+const app = express();
 
-app.use((req,res,next)=>
-{
-  res.send('hello')
-})
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
+app.use(cookieParser());
 
-module.exports = app
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(
+  bodyParser.urlencoded({
+    // to support URL-encoded bodies
+    extended: true,
+  })
+);
+
+app.use(userRouter);
+
+module.exports = app;
