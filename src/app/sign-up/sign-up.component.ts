@@ -7,6 +7,8 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { User } from 'src/models/user.nodel';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,7 +24,10 @@ export class SignUpComponent implements OnInit {
   password;
   passwordRepeated;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private UserService: UserService
+  ) {
     this.signUpForm = this.formBuilder.group(
       {
         firstName: ['', [Validators.required]],
@@ -45,7 +50,9 @@ export class SignUpComponent implements OnInit {
     this.passwordRepeated = this.signUpForm.get('passwordRepeated');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.UserService.getHello();
+  }
 
   invalidFirstNameMessage() {
     if (this.firstName.errors?.required) {
@@ -107,5 +114,20 @@ export class SignUpComponent implements OnInit {
     const isIncludesDigits = /\d/.exec(control.value);
     const invalid = !isIncludesDigits || isIncludesWhiteSpace;
     return invalid ? { passwordinvalid: true } : null;
+  }
+
+  onSubmintSignUpForm() {
+    console.log(this.UserService.users);
+    if (this.signUpForm.valid) {
+      const user: User = {
+        firstName: this.firstName.value,
+        lastName: this.lastName.value,
+        age: this.age.value,
+        email: this.email.value,
+        password: this.password.value,
+      };
+      this.UserService.addUser(user);
+      console.log(this.UserService.users);
+    }
   }
 }
