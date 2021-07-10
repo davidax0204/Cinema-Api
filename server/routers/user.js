@@ -9,7 +9,13 @@ router.get("", (req, res) => {
 
 router.post("", async (req, res) => {
   const user = new User(req.body);
-  await user.save();
+  try {
+    await User.findExistingUsers(user.email);
+    await user.save();
+    res.status(200).json();
+  } catch (e) {
+    res.status(500).json({ e });
+  }
 });
 
 module.exports = router;

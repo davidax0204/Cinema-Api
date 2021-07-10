@@ -7,6 +7,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.nodel';
 import { UserService } from 'src/services/user.service';
 
@@ -26,7 +27,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private UserService: UserService
+    private UserService: UserService,
+    private router: ActivatedRoute
   ) {
     this.signUpForm = this.formBuilder.group(
       {
@@ -51,8 +53,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.UserService.getHello();
-    // this.UserService.sendHello();
+    console.log(this.router.params);
   }
 
   invalidFirstNameMessage() {

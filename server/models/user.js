@@ -79,6 +79,12 @@ const userSchema = new mongoose.Schema({
   //   },
   // ],
 });
+userSchema.statics.findExistingUsers = async function (email) {
+  const isDups = await User.find({ email });
+  if (isDups.length > 0) {
+    throw new Error("The email is taken");
+  }
+};
 
 userSchema.pre("save", async function (next) {
   const user = this;

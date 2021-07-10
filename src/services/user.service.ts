@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.nodel';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 const db = 'http://localhost:3000';
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getHello() {
     this.http.get(db).subscribe((res) => {
@@ -41,8 +42,13 @@ export class UserService {
   }
 
   addUser(user: User) {
-    this.http.post(db, user).subscribe((res) => {
-      console.log(res);
-    });
+    this.http.post(db, user).subscribe(
+      (res) => {
+        this.router.navigate(['']);
+      },
+      (error) => {
+        this.router.navigate(['/user/sign-up', { error: 'from here error' }]);
+      }
+    );
   }
 }
