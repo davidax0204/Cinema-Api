@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.nodel';
 import { HttpClient } from '@angular/common/http';
+const db = 'http://localhost:3000';
 
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) {}
 
   getHello() {
-    this.http.get('http://localhost:3000').subscribe((res) => {
+    this.http.get(db).subscribe((res) => {
       console.log(res);
     });
   }
+
+  // sendHello() {
+  //   this.http.post(db, { text: 'Working' }).subscribe((res) => {
+  //     console.log(res);
+  //   });
+  // }
 
   private _users: User[] = [
     {
@@ -34,6 +41,8 @@ export class UserService {
   }
 
   addUser(user: User) {
-    this._users.push(user);
+    this.http.post(db, user).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

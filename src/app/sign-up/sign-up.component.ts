@@ -51,7 +51,8 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.UserService.getHello();
+    // this.UserService.getHello();
+    // this.UserService.sendHello();
   }
 
   invalidFirstNameMessage() {
@@ -117,7 +118,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmintSignUpForm() {
-    console.log(this.UserService.users);
     if (this.signUpForm.valid) {
       const user: User = {
         firstName: this.firstName.value,
@@ -127,7 +127,6 @@ export class SignUpComponent implements OnInit {
         password: this.password.value,
       };
       this.UserService.addUser(user);
-      console.log(this.UserService.users);
     }
   }
 }
