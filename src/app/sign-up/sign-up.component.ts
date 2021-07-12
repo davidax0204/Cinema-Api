@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/models/user.nodel';
 import { UserService } from 'src/services/user.service';
 
@@ -25,15 +25,17 @@ export class SignUpComponent implements OnInit {
   password;
   passwordRepeated;
 
+  submitError;
+
   constructor(
     private formBuilder: FormBuilder,
     private UserService: UserService,
-    private router: ActivatedRoute
+    private router: Router
   ) {
     this.signUpForm = this.formBuilder.group(
       {
-        firstName: ['', [Validators.required]],
-        lastName: ['', Validators.required],
+        firstName: ['', [Validators.required, this.firstNameValidator]],
+        lastName: ['', [Validators.required, this.lastNameValidator]],
         age: ['', [Validators.required, Validators.min(10)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, this.passwordValidator]],
@@ -52,19 +54,23 @@ export class SignUpComponent implements OnInit {
     this.passwordRepeated = this.signUpForm.get('passwordRepeated');
   }
 
-  ngOnInit(): void {
-    console.log(this.router.params);
-  }
+  ngOnInit(): void {}
 
   invalidFirstNameMessage() {
     if (this.firstName.errors?.required) {
       return 'You must enter a first name';
+    }
+    if (this.firstName.errors?.firstNameLettersError) {
+      return 'You must enter letters only';
     }
   }
 
   invalidLastNameMessage() {
     if (this.lastName.errors?.required) {
       return 'You must enter a last name';
+    }
+    if (this.lastName.errors?.lastNameLettersError) {
+      return 'You must enter letters only';
     }
   }
 
@@ -118,7 +124,19 @@ export class SignUpComponent implements OnInit {
     return invalid ? { passwordinvalid: true } : null;
   }
 
-  onSubmintSignUpForm() {
+  firstNameValidator(control: AbstractControl): ValidationErrors | null {
+    return !/^[a-zA-Z\s]*$/.test(control.value)
+      ? { firstNameLettersError: true }
+      : null;
+  }
+
+  lastNameValidator(control: AbstractControl): ValidationErrors | null {
+    return !/^[a-zA-Z\s]*$/.test(control.value)
+      ? { lastNameLettersError: true }
+      : null;
+  }
+
+  onSubmitSignUpForm() {
     if (this.signUpForm.valid) {
       const user: User = {
         firstName: this.firstName.value,
@@ -127,7 +145,14 @@ export class SignUpComponent implements OnInit {
         email: this.email.value,
         password: this.password.value,
       };
-      this.UserService.addUser(user);
+      this.UserService.addUser(user).subscribe(
+        (res) => {
+          this.router.navigate(['']);
+        },
+        (error) => {
+          this.submitError = error.error;
+        }
+      );
     }
   }
 }

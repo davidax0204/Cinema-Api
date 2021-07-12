@@ -14,7 +14,7 @@ router.post("", async (req, res) => {
     await user.save();
     res.status(200).json();
   } catch (e) {
-    res.status(500).json({ e });
+    res.status(500).send(e.message);
   }
 });
 

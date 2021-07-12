@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.nodel';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-const db = 'http://localhost:3000';
+import { environment } from 'src/environments/environment';
+const db = environment.NODEJS_SERVER;
 
 @Injectable()
 export class UserService {
@@ -42,13 +43,6 @@ export class UserService {
   }
 
   addUser(user: User) {
-    this.http.post(db, user).subscribe(
-      (res) => {
-        this.router.navigate(['']);
-      },
-      (error) => {
-        this.router.navigate(['/user/sign-up', { error: 'from here error' }]);
-      }
-    );
+    return this.http.post(db, user);
   }
 }
