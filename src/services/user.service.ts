@@ -43,6 +43,13 @@ export class UserService {
   }
 
   addUser(user: User) {
-    return this.http.post(db, user);
+    return this.http.post(db + '/sign-up', { user, localStorage });
+  }
+
+  loginUser(email, password) {
+    this.http.post(db + '/sign-in', { email, password }).subscribe((res) => {
+      console.log(res);
+      localStorage.setItem('token', JSON.stringify(res));
+    });
   }
 }

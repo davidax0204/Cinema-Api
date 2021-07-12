@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/models/user.nodel';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +13,7 @@ export class SignInComponent implements OnInit {
   email;
   password;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private UserService: UserService) {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -35,6 +37,12 @@ export class SignInComponent implements OnInit {
   invalidPassword() {
     if (this.password.errors?.required) {
       return 'You must enter a password';
+    }
+  }
+
+  onSubmitSignInForm() {
+    if (this.signInForm.valid) {
+      this.UserService.loginUser(this.email.value, this.password.value);
     }
   }
 }
