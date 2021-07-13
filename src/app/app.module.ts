@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UserService } from 'src/services/user.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { UserService } from 'src/services/user.service';
     HomeComponent,
     UserComponent,
     SignInComponent,
+    UserProfileComponent,
   ],
   imports: [
     AppRoutingModule,

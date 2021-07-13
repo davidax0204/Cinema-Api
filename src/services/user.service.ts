@@ -49,4 +49,8 @@ export class UserService {
   loginUser(email, password) {
     return this.http.post(db + '/sign-in', { email, password });
   }
+
+  userProfile() {
+    return this.http.post(db + '/profile', { localStorage });
+  }
 }

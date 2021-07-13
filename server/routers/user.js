@@ -9,6 +9,7 @@ router.get("", (req, res) => {
 });
 
 router.post("/sign-up", async (req, res) => {
+  console.log(req.body.localStorage.token);
   const user = new User(req.body.user);
   try {
     await User.findExistingUsers(user.email);
@@ -20,16 +21,24 @@ router.post("/sign-up", async (req, res) => {
 });
 
 router.post("/sign-in", async (req, res) => {
+  // console.log(req.body.localStorage.token);
   try {
     const user = await User.findByCredentials(
       req.body.email,
       req.body.password
     );
     const token = await user.generateAuthToken();
-
     res.json(token);
   } catch (e) {
     res.status(500).send(e.message);
+  }
+});
+
+router.post("/profile", auth, async (req, res) => {
+  try {
+    res.send();
+  } catch (e) {
+    res.send(e);
   }
 });
 
