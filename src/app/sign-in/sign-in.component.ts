@@ -13,6 +13,9 @@ export class SignInComponent implements OnInit {
   email;
   password;
 
+  signInErrorMessage;
+  isModalOpen = false;
+
   constructor(private fb: FormBuilder, private UserService: UserService) {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -40,9 +43,24 @@ export class SignInComponent implements OnInit {
     }
   }
 
+  onClickCloseModal() {
+    this.isModalOpen = false;
+  }
+
   onSubmitSignInForm() {
     if (this.signInForm.valid) {
-      this.UserService.loginUser(this.email.value, this.password.value);
+      this.UserService.loginUser(
+        this.email.value,
+        this.password.value
+      ).subscribe(
+        (res) => {
+          localStorage.setItem('token', JSON.stringify(res));
+        },
+        (error) => {
+          this.signInErrorMessage = error.error;
+          this.isModalOpen = true;
+        }
+      );
     }
   }
 }

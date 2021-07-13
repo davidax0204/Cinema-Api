@@ -41,3 +41,12 @@
   </form>
 
 </div>
+<div id="myModal"
+     *ngIf="isModalOpen"
+     class="modal">
+  <div class="modal-content">
+    <span (click)="onClickCloseModal()"
+          class="close">&times;</span>
+    <p>{{signInErrorMessage}}.</p>
+  </div>
+</div>

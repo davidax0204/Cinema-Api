@@ -47,9 +47,6 @@ export class UserService {
   }
 
   loginUser(email, password) {
-    this.http.post(db + '/sign-in', { email, password }).subscribe((res) => {
-      console.log(res);
-      localStorage.setItem('token', JSON.stringify(res));
-    });
+    return this.http.post(db + '/sign-in', { email, password });
   }
 }

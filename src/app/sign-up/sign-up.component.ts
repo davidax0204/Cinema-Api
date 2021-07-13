@@ -26,6 +26,7 @@ export class SignUpComponent implements OnInit {
   passwordRepeated;
 
   submitError;
+  isModalOpen = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -136,6 +137,10 @@ export class SignUpComponent implements OnInit {
       : null;
   }
 
+  onClickCloseModal() {
+    this.isModalOpen = false;
+  }
+
   onSubmitSignUpForm() {
     if (this.signUpForm.valid) {
       const user: User = {
@@ -151,6 +156,7 @@ export class SignUpComponent implements OnInit {
         },
         (error) => {
           this.submitError = error.error;
+          this.isModalOpen = true;
         }
       );
     }

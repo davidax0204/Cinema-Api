@@ -72,9 +72,6 @@
 
       <p>By creating an account you agree to our Terms & Privacy.</p>
 
-      <div class="invalid-message"
-           *ngIf="submitError!=null">{{submitError}}</div>
-
       <button type="submit"
               class="registerbtn"
               [disabled]="signUpForm.invalid">Register</button>
@@ -86,4 +83,13 @@
 
   </form>
 
+</div>
+<div id="myModal"
+     *ngIf="isModalOpen"
+     class="modal">
+  <div class="modal-content">
+    <span (click)="onClickCloseModal()"
+          class="close">&times;</span>
+    <p>{{signInErrorMessage}}.</p>
+  </div>
 </div>
