@@ -71,7 +71,8 @@
 
 
       <button type="submit"
-              class="registerbtn">Save</button>
+              class="registerbtn"
+              [disabled]="profilePage.invalid">Save</button>
 
       <button (click)="onClickLogOut()"
               class="registerbtn">LogOut</button>

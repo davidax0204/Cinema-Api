@@ -154,6 +154,8 @@ export class UserProfileComponent implements OnInit {
   onClickLogOut() {
     this.UserService.logOutUser().subscribe(
       (res) => {
+        console.log('sadasdasdasd');
+
         this.router.navigate(['/user']);
       },
       (error) => {

@@ -80,7 +80,7 @@ router.post("/profile/logOut", auth, async (req, res) => {
       return token.token !== req.token;
     });
     await req.user.save();
-    res.status(200);
+    res.status(200).send();
   } catch (e) {
     res.status(500).send();
   }
