@@ -12,6 +12,7 @@ import { UserComponent } from './user/user.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UserService } from 'src/services/user.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AuthGaurd } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserService],
+  providers: [UserService, AuthGaurd],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

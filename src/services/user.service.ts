@@ -42,6 +42,21 @@ export class UserService {
     return [...this._users];
   }
 
+  // isLoged(): boolean {
+  //   let authFlag: boolean;
+
+  //   this.http.post(db + '/isLoged', { localStorage }).subscribe(
+  //     (res) => {
+  //       authFlag = true;
+  //     },
+  //     (error) => {
+  //       authFlag = false;
+  //     }
+  //   );
+
+  //   return authFlag;
+  // }
+
   addUser(user: User) {
     return this.http.post(db + '/sign-up', { user, localStorage });
   }

@@ -42,4 +42,11 @@ router.post("/profile", auth, async (req, res) => {
   }
 });
 
+router.post("/isLoged", auth, async (req, res) => {
+  try {
+    res.status(200).send(true);
+  } catch (e) {
+    res.status(403).send;
+  }
+});
 module.exports = router;

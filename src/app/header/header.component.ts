@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/user/profile']);
       },
       (error) => {
-        this.router.navigate(['/user/sign-in']);
+        this.router.navigate(['/user']);
       }
     );
   }

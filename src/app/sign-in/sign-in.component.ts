@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/models/user.nodel';
 import { UserService } from 'src/services/user.service';
 
@@ -16,7 +17,11 @@ export class SignInComponent implements OnInit {
   signInErrorMessage;
   isModalOpen = false;
 
-  constructor(private fb: FormBuilder, private UserService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private UserService: UserService,
+    private router: Router
+  ) {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -55,6 +60,7 @@ export class SignInComponent implements OnInit {
       ).subscribe(
         (res) => {
           localStorage.setItem('token', JSON.stringify(res));
+          this.router.navigate(['/user/profile']);
         },
         (error) => {
           this.signInErrorMessage = error.error;
