@@ -6,6 +6,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/models/user.nodel';
 import { UserService } from 'src/services/user.service';
 
@@ -23,19 +24,20 @@ export class UserProfileComponent implements OnInit {
   password;
   passwordRepeated;
 
+  isModalOpen = false;
+  msg;
+
   constructor(
     private formBuilder: FormBuilder,
-    private UserService: UserService
+    private UserService: UserService,
+    private router: Router
   ) {
     this.profilePage = this.formBuilder.group(
       {
-        firstName: ['David', [Validators.required, this.firstNameValidator]],
-        lastName: ['Axelrod', [Validators.required, this.lastNameValidator]],
-        age: [11, [Validators.required, Validators.min(10)]],
-        email: [
-          'davidax5625@gmail.com',
-          [Validators.required, Validators.email],
-        ],
+        firstName: ['', [Validators.required, this.firstNameValidator]],
+        lastName: ['', [Validators.required, this.lastNameValidator]],
+        age: ['', [Validators.required, Validators.min(10)]],
+        email: ['', [Validators.required, Validators.email]],
         password: ['', this.passwordValidator],
         passwordRepeated: [''],
       },
@@ -52,7 +54,19 @@ export class UserProfileComponent implements OnInit {
     this.passwordRepeated = this.profilePage.get('passwordRepeated');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.UserService.getUser().subscribe(
+      (res: any) => {
+        this.profilePage.controls['firstName'].setValue(res.firstName);
+        this.profilePage.controls['lastName'].setValue(res.lastName);
+        this.profilePage.controls['age'].setValue(res.age);
+        this.profilePage.controls['email'].setValue(res.email);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   invalidFirstNameMessage() {
     if (this.firstName.errors?.required) {
@@ -133,6 +147,21 @@ export class UserProfileComponent implements OnInit {
       : null;
   }
 
+  onClickCloseModal() {
+    this.isModalOpen = false;
+  }
+
+  onClickLogOut() {
+    this.UserService.logOutUser().subscribe(
+      (res) => {
+        this.router.navigate(['/user']);
+      },
+      (error) => {
+        this.router.navigate(['/user/profile']);
+      }
+    );
+  }
+
   onSubmitProfileEditForm() {
     if (this.profilePage.valid) {
       if (this.password.value) {
@@ -143,6 +172,19 @@ export class UserProfileComponent implements OnInit {
           email: this.email.value,
           password: this.password.value,
         };
+        this.UserService.editUser(user).subscribe(
+          (res) => {
+            console.log('asdasd');
+
+            this.isModalOpen = true;
+            this.msg = 'Your new info is updated';
+          },
+          (error) => {
+            this.isModalOpen = true;
+            this.msg =
+              'The Email you chose is already taken, Please choose another one';
+          }
+        );
       } else {
         const user: User = {
           firstName: this.firstName.value,
@@ -150,6 +192,19 @@ export class UserProfileComponent implements OnInit {
           age: this.age.value,
           email: this.email.value,
         };
+        this.UserService.editUser(user).subscribe(
+          (res) => {
+            console.log('asdasd');
+
+            this.isModalOpen = true;
+            this.msg = 'Your new info is updated';
+          },
+          (error) => {
+            this.isModalOpen = true;
+            this.msg =
+              'The Email you chose is already taken, Please choose another one';
+          }
+        );
       }
     }
   }

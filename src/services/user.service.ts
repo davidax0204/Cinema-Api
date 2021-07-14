@@ -61,11 +61,23 @@ export class UserService {
     return this.http.post(db + '/sign-up', { user, localStorage });
   }
 
+  getUser() {
+    return this.http.post(db + '/read-profile', { localStorage });
+  }
+
   loginUser(email, password) {
     return this.http.post(db + '/sign-in', { email, password });
   }
 
   userProfile() {
     return this.http.post(db + '/profile', { localStorage });
+  }
+
+  editUser(user: User) {
+    return this.http.post(db + '/profile-edit', { localStorage, user });
+  }
+
+  logOutUser() {
+    return this.http.post(db + '/profile/logOut', { localStorage });
   }
 }

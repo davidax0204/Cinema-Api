@@ -6,7 +6,6 @@
     <div class="container">
       <h1>Profile</h1>
 
-
       <div class="sign-up-line-wrap">
         <label><b>First name</b></label>
         <input type="text"
@@ -73,18 +72,21 @@
 
       <button type="submit"
               class="registerbtn">Save</button>
+
+      <button (click)="onClickLogOut()"
+              class="registerbtn">LogOut</button>
     </div>
 
 
   </form>
 
 </div>
-<!-- <div id="myModal"
+<div id="myModal"
      *ngIf="isModalOpen"
      class="modal">
   <div class="modal-content">
     <span (click)="onClickCloseModal()"
           class="close">&times;</span>
-    <p>{{signInErrorMessage}}.</p>
+    <p>{{msg}}.</p>
   </div>
-</div> -->
+</div>

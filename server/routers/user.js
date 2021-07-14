@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/user");
 const auth = require("../middleware/auth");
+const { LOG_PRIORITIES } = require("karma/lib/constants");
 
 const router = new express.Router();
 
@@ -21,7 +22,6 @@ router.post("/sign-up", async (req, res) => {
 });
 
 router.post("/sign-in", async (req, res) => {
-  // console.log(req.body.localStorage.token);
   try {
     const user = await User.findByCredentials(
       req.body.email,
@@ -46,7 +46,44 @@ router.post("/isLoged", auth, async (req, res) => {
   try {
     res.status(200).send(true);
   } catch (e) {
-    res.status(403).send;
+    res.status(403).send(e);
   }
 });
+
+router.post("/read-profile", auth, async (req, res) => {
+  try {
+    res.status(200).send({
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      age: req.user.age,
+      email: req.user.email,
+    });
+  } catch (e) {
+    res.status(403).send(e);
+  }
+});
+
+router.post("/profile-edit", auth, async (req, res) => {
+  const updates = Object.keys(req.body.user);
+  try {
+    const user = req.user;
+    updates.forEach((update) => (user[update] = req.body.user[update]));
+    await user.save();
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+});
+
+router.post("/profile/logOut", auth, async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token !== req.token;
+    });
+    await req.user.save();
+    res.status(200);
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
 module.exports = router;
