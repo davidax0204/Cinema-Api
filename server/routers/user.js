@@ -1,7 +1,6 @@
 const express = require("express");
 const User = require("../models/user");
 const auth = require("../middleware/auth");
-const { LOG_PRIORITIES } = require("karma/lib/constants");
 
 const router = new express.Router();
 
@@ -10,7 +9,6 @@ router.get("", (req, res) => {
 });
 
 router.post("/sign-up", async (req, res) => {
-  console.log(req.body.localStorage.token);
   const user = new User(req.body.user);
   try {
     await User.findExistingUsers(user.email);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user.nodel';
+import { AdminService } from 'src/services/admin.service';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -14,12 +15,14 @@ export class SignInComponent implements OnInit {
   email;
   password;
 
+  isAdmin = false;
   signInErrorMessage;
   isModalOpen = false;
 
   constructor(
     private fb: FormBuilder,
     private UserService: UserService,
+    private AdminService: AdminService,
     private router: Router
   ) {
     this.signInForm = this.fb.group({
@@ -52,21 +55,35 @@ export class SignInComponent implements OnInit {
     this.isModalOpen = false;
   }
 
+  onAdminButtonClick() {
+    this.isAdmin = !this.isAdmin;
+  }
+
   onSubmitSignInForm() {
     if (this.signInForm.valid) {
-      this.UserService.loginUser(
-        this.email.value,
-        this.password.value
-      ).subscribe(
-        (res) => {
+      if (this.isAdmin) {
+        this.AdminService.adminLogIn(
+          this.email.value,
+          this.password.value
+        ).subscribe((res) => {
+          console.log(res);
           localStorage.setItem('token', JSON.stringify(res));
-          this.router.navigate(['/user/profile']);
-        },
-        (error) => {
-          this.signInErrorMessage = error.error;
-          this.isModalOpen = true;
-        }
-      );
+        });
+      } else {
+        this.UserService.loginUser(
+          this.email.value,
+          this.password.value
+        ).subscribe(
+          (res) => {
+            localStorage.setItem('token', JSON.stringify(res));
+            this.router.navigate(['/user/profile']);
+          },
+          (error) => {
+            this.signInErrorMessage = error.error;
+            this.isModalOpen = true;
+          }
+        );
+      }
     }
   }
 }

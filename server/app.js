@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("../server/db/mongoose");
 const userRouter = require("./routers/user");
+const adminRouter = require("./routers/admin");
 
 const app = express();
 
@@ -38,5 +39,6 @@ app.use(
 );
 
 app.use(userRouter);
+app.use(adminRouter);
 
 module.exports = app;
