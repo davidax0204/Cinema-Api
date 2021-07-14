@@ -12,4 +12,8 @@ export class AdminService {
   adminLogIn(email, password) {
     return this.http.post(db + '/admin/sign-in', { email, password });
   }
+
+  getAllUsers() {
+    return this.http.post(db + '/admin/users', { localStorage });
+  }
 }

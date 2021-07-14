@@ -14,6 +14,7 @@ import { UserService } from 'src/services/user.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGaurd } from './auth.guard';
 import { AdminService } from 'src/services/admin.service';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AdminService } from 'src/services/admin.service';
     UserComponent,
     SignInComponent,
     UserProfileComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -152,7 +152,7 @@ export class SignUpComponent implements OnInit {
       };
       this.UserService.addUser(user).subscribe(
         (res) => {
-          this.router.navigate(['']);
+          this.router.navigate(['/user/profile']);
         },
         (error) => {
           this.submitError = error.error;
