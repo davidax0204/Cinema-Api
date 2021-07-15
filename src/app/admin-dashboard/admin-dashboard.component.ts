@@ -23,4 +23,13 @@ export class AdminDashboardComponent implements OnInit {
       this.users = res;
     });
   }
+
+  onDeleteUserButton(id) {
+    console.log(this.users);
+    this.AdminService.deleteUser(id).subscribe((res) => {
+      this.AdminService.getAllUsers().subscribe((res: any) => {
+        this.users = res;
+      });
+    });
+  }
 }

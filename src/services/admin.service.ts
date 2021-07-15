@@ -16,4 +16,20 @@ export class AdminService {
   getAllUsers() {
     return this.http.post(db + '/admin/users', { localStorage });
   }
+
+  getUser(id) {
+    return this.http.post(db + '/admin/getUser ', { id, localStorage });
+  }
+
+  changeUserInfo(userData, id) {
+    return this.http.post(db + '/admin/changeUser', {
+      id,
+      userData,
+      localStorage,
+    });
+  }
+
+  deleteUser(id) {
+    return this.http.post(db + '/admin/deleteUser ', { id, localStorage });
+  }
 }

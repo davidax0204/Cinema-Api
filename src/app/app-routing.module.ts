@@ -7,6 +7,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserComponent } from './user/user.component';
 import { AuthGaurd } from './auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserEditAdminComponent } from './user-edit-admin/user-edit-admin.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
   },
+  { path: 'admin-edit/:id', component: UserEditAdminComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
