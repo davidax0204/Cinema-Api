@@ -13,7 +13,8 @@ router.post("/sign-up", async (req, res) => {
   try {
     await User.findExistingUsers(user.email);
     await user.save();
-    res.status(200).json();
+    const token = await user.generateAuthToken();
+    res.status(200).json(token);
   } catch (e) {
     res.status(500).send(e.message);
   }

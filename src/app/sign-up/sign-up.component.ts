@@ -152,6 +152,7 @@ export class SignUpComponent implements OnInit {
       };
       this.UserService.addUser(user).subscribe(
         (res) => {
+          localStorage.setItem('token', JSON.stringify(res));
           this.router.navigate(['/user/profile']);
         },
         (error) => {
