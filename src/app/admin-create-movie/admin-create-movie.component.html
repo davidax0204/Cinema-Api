@@ -1,0 +1,111 @@
+<div class="main-content-inner-part">
+  <form id="sign-up-form"
+        (ngSubmit)="submitForm()"
+        [formGroup]="editForm">
+    <div class="container">
+      <h1>Create Movie</h1>
+
+      <hr>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Name</b></label>
+        <input type="text"
+               placeholder="Enter the name of the movie"
+               formControlName="name">
+      </div>
+      <div class="invalid-message"
+           *ngIf="name.touched && name.invalid">{{invalidNameMessage()}}</div>
+
+
+
+      <div class="sign-up-line-wrap">
+        <label><b>Writer</b></label>
+        <input type="text"
+               placeholder="Enter the writer of the movie"
+               formControlName="writer">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="writer.touched && writer.invalid">{{invalidWriterMessage()}}</div>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Genre</b></label>
+        <input type="text"
+               placeholder="Enter the genre of the movie"
+               formControlName="genre">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="genre.touched && genre.invalid">{{invalidGenreMessage()}}</div>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Production</b></label>
+        <input type="text"
+               placeholder="Enter the production team of the movie"
+               formControlName="production">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="production.touched && production.invalid">{{invalidProductionMessage()}}</div>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Description</b></label>
+        <textarea type="text"
+                  placeholder="Enter the description of the movie"
+                  formControlName="description"
+                  rows="20"></textarea>
+      </div>
+
+      <div style="margin-top: 5px;"
+           class="invalid-message"
+           *ngIf="description.touched && description.invalid">{{invalidDescriptionMessage()}}</div>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Length</b></label>
+        <input type="text"
+               placeholder="Enter the length of the movie"
+               formControlName="Length">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="Length.touched && Length.invalid">{{invalidLengthMessage()}}</div>
+
+
+      <div class="sign-up-line-wrap">
+        <label><b>Ticket Price</b></label>
+        <input type="number"
+               placeholder="Enter the price of movie ticket"
+               formControlName="price">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="price.touched && price.invalid">{{invalidPriceMessage()}}</div>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Image</b></label>
+        <input type="text"
+               placeholder="movie img URL"
+               formControlName="img">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="img.touched && img.invalid">{{invalidiImgMessage()}}</div>
+
+      <hr>
+
+      <button type="submit"
+              class="registerbtn">Submit</button>
+    </div>
+
+  </form>
+
+</div>
+<!-- <div id="myModal"
+     *ngIf="isModalOpen"
+     class="modal">
+  <div class="modal-content">
+    <span (click)="onClickCloseModal()"
+          class="close">&times;</span>
+    <p>{{signInErrorMessage}}.</p>
+  </div>
+</div> -->

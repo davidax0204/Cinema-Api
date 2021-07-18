@@ -14,8 +14,11 @@ import { UserService } from 'src/services/user.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGaurd } from './auth.guard';
 import { AdminService } from 'src/services/admin.service';
+import { MovieService } from 'src/services/movie.service';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserEditAdminComponent } from './user-edit-admin/user-edit-admin.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { UserEditAdminComponent } from './user-edit-admin/user-edit-admin.compon
     UserProfileComponent,
     AdminDashboardComponent,
     UserEditAdminComponent,
+    MovieListComponent,
+    AdminCreateMovieComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +41,7 @@ import { UserEditAdminComponent } from './user-edit-admin/user-edit-admin.compon
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserService, AdminService, AuthGaurd],
+  providers: [UserService, AdminService, AuthGaurd, MovieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

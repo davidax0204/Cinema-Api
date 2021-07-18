@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 require("../server/db/mongoose");
 const userRouter = require("./routers/user");
 const adminRouter = require("./routers/admin");
+const movieRouter = require("./routers/movie");
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(
 );
 
 app.use(userRouter);
+app.use(movieRouter);
 app.use(adminRouter);
 
 module.exports = app;

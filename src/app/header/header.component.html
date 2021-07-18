@@ -1,4 +1,5 @@
-<div class="navigation-bar">
+<div *ngIf="!isAdmin"
+     class="navigation-bar">
 
   <div class="mobile-menu ">
     <button class="main-menu menu-butttonnnn">
@@ -75,6 +76,88 @@
       <button class="header-user-button-inner">
         <i class="fa fa-shopping-cart fa-lg"></i>
         <!-- <span class="sign-in-button-inner-text"></span> -->
+      </button>
+    </a>
+
+  </div>
+
+</div>
+
+
+
+
+
+<div *ngIf="isAdmin"
+     class="navigation-bar">
+
+  <div class="mobile-menu ">
+    <button class="main-menu menu-butttonnnn">
+      <div class="menu-line"
+           id="menu-line-top"></div>
+      <div class="menu-line"
+           id="menu-line-middle"></div>
+      <div class="menu-line"
+           id="menu-line-bottom"></div>
+    </button>
+    <div id="myLinks">
+      <a class="mobile-menu-search-container">
+        <input type="text"
+               placeholder="Search for a movie">
+        <button type="submit"
+                id="mobile-menu-search-button"><i class="fa fa-search"></i></button>
+      </a>
+      <a href="#about">
+        <span>Cart </span>
+        <i class="fa fa-shopping-cart"></i>
+      </a>
+      <a href="/profile">
+        <span>Profile </span>
+        <i class="user-button fa fa-user"></i>
+      </a>
+      <a href="/sign-up">
+        <span>Sign in/Join </span>
+        <i class="user-button fa fa-sign-in"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="logo-container">
+    <a routerLink="/home">
+
+      <img class="header-logo"
+           src="assets/pictures/Logo4.jpg">
+
+    </a>
+  </div>
+
+
+
+
+  <div class="header-user-button"
+       style="font-size: 24px;">
+
+
+    <!-- <a href="/sign-up">
+      <button class="header-user-button-inner">
+        <i id="user"
+           class="user-button fa fa-sign-in fa-lg"></i>
+      </button>
+    </a> -->
+
+
+    <a routerLink="/admin-dashboard">
+      <button class="header-user-button-inner-admin">
+        Users
+      </button>
+    </a>
+    <a>
+      <button class="header-user-button-inner-admin">
+        Movies
+      </button>
+    </a>
+    <a (click)="onClickAdminLogOut()">
+      <button class="header-user-button-inner-admin">
+        LogOut
       </button>
     </a>
 

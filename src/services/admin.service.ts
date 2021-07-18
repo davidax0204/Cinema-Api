@@ -30,6 +30,18 @@ export class AdminService {
   }
 
   deleteUser(id) {
-    return this.http.post(db + '/admin/deleteUser ', { id, localStorage });
+    return this.http.post(db + '/admin/deleteUser', { id, localStorage });
+  }
+
+  isAdmin() {
+    return this.http.post(db + '/admin/isAdmin', { localStorage });
+  }
+
+  logOutAdmin() {
+    return this.http.post(db + '/admin/logout', { localStorage });
+  }
+
+  getBooks() {
+    return this.http.get(db + '/books');
   }
 }

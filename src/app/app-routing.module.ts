@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 import { AuthGaurd } from './auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserEditAdminComponent } from './user-edit-admin/user-edit-admin.component';
+import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
     component: AdminDashboardComponent,
   },
   { path: 'admin-edit/:id', component: UserEditAdminComponent },
+  { path: 'create-movie', component: AdminCreateMovieComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/services/admin.service';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -9,9 +10,24 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private UserService: UserService, private router: Router) {}
+  isAdmin = false;
 
-  ngOnInit(): void {}
+  constructor(
+    private UserService: UserService,
+    private AdminService: AdminService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.AdminService.isAdmin().subscribe(
+      (res) => {
+        this.isAdmin = true;
+      },
+      (error) => {
+        this.isAdmin = false;
+      }
+    );
+  }
 
   onClickProfileButton() {
     this.UserService.userProfile().subscribe(
@@ -22,5 +38,13 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/user']);
       }
     );
+  }
+
+  onClickAdminLogOut() {
+    this.AdminService.logOutAdmin().subscribe((res) => {
+      this.isAdmin = false;
+      localStorage.setItem('token', '');
+      this.router.navigate(['/user']);
+    });
   }
 }

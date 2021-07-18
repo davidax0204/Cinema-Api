@@ -9,7 +9,6 @@ const auth = async (req, res, next) => {
       _id: decoded._id,
       "tokens.token": token,
     });
-
     if (!admin) {
       throw new Error();
     }

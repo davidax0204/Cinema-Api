@@ -83,6 +83,22 @@ form.search-container button:hover,
 .header-user-button button {
   border: none;
 }
+.header-user-button-inner-admin {
+  border: none;
+  height: 37px;
+  margin-left: 5px;
+  background: #2196f3;
+  color: white;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  /* margin-right: auto;
+    margin-left: auto; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* min-width: 93px !important; */
+}
 .header-user-button-inner {
   border: none;
   height: 37px;

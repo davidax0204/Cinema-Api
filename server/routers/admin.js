@@ -62,4 +62,24 @@ router.post("/admin/deleteUser", auth, async (req, res) => {
   }
 });
 
+router.post("/admin/isAdmin", auth, async (req, res) => {
+  try {
+    res.status(200).send();
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+router.post("/admin/logout", auth, async (req, res) => {
+  try {
+    req.admin.tokens = req.admin.tokens.filter((token) => {
+      return token.token !== req.token;
+    });
+    await req.admin.save();
+    res.status(200).send();
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
 module.exports = router;
