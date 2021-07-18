@@ -1,22 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/models/movie.model';
 import { AdminService } from 'src/services/admin.service';
 import { UserService } from 'src/services/user.service';
 
 @Component({
-  selector: 'app-admin-create-movie',
-  templateUrl: './admin-create-movie.component.html',
-  styleUrls: ['./admin-create-movie.component.css'],
+  selector: 'app-movie-edit-admin',
+  templateUrl: './movie-edit-admin.component.html',
+  styleUrls: ['./movie-edit-admin.component.css'],
 })
-export class AdminCreateMovieComponent implements OnInit {
+export class MovieEditAdminComponent implements OnInit {
   editForm: FormGroup;
   name;
   writer;
@@ -35,7 +29,8 @@ export class AdminCreateMovieComponent implements OnInit {
     private formBuilder: FormBuilder,
     private UserService: UserService,
     private AdminService: AdminService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.editForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -58,7 +53,18 @@ export class AdminCreateMovieComponent implements OnInit {
     this.img = this.editForm.get('img');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      console.log(params);
+
+      // this.AdminService.getUser(params.id).subscribe((res: any) => {
+      //   this.profilePage.controls['firstName'].setValue(res.firstName);
+      //   this.profilePage.controls['lastName'].setValue(res.lastName);
+      //   this.profilePage.controls['age'].setValue(res.age);
+      //   this.profilePage.controls['email'].setValue(res.email);
+      // });
+    });
+  }
 
   invalidNameMessage() {
     if (this.name.errors?.required) {

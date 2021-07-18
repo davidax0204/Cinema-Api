@@ -121,14 +121,14 @@
     </div>
   </div>
 
-  <div class="logo-container">
+  <!-- <div class="logo-container">
     <a routerLink="/home">
 
       <img class="header-logo"
            src="assets/pictures/Logo4.jpg">
 
     </a>
-  </div>
+  </div> -->
 
 
 
@@ -150,9 +150,14 @@
         Users
       </button>
     </a>
-    <a>
+    <a routerLink="/admin-movies">
       <button class="header-user-button-inner-admin">
         Movies
+      </button>
+    </a>
+    <a routerLink="/create-movie">
+      <button class="header-user-button-inner-admin">
+        Create Movie
       </button>
     </a>
     <a (click)="onClickAdminLogOut()">

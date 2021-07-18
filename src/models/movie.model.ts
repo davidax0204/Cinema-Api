@@ -1,11 +1,10 @@
 export interface Movie {
-  title: string;
+  name: string;
   writer: string;
-  Genre: string;
-  Production: string;
+  genre: string;
+  production: string;
   description: string;
   length: string;
+  ticketPrice: number;
   img: string;
-  time: string;
-  location: string;
 }

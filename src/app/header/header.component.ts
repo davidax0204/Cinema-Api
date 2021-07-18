@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { UserService } from 'src/services/user.service';
@@ -15,16 +15,22 @@ export class HeaderComponent implements OnInit {
   constructor(
     private UserService: UserService,
     private AdminService: AdminService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone
   ) {}
+
+  private fun(flag: boolean) {
+    this.ngZone.run(() => (this.isAdmin = flag));
+  }
 
   ngOnInit(): void {
     this.AdminService.isAdmin().subscribe(
       (res) => {
-        this.isAdmin = true;
+        this.fun(true);
+        console.log('yes');
       },
       (error) => {
-        this.isAdmin = false;
+        this.fun(false);
       }
     );
   }

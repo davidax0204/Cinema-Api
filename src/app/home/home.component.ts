@@ -13,15 +13,11 @@ import { UserService } from 'src/services/user.service';
 export class HomeComponent implements OnInit {
   movieList: Movie[];
 
-  constructor(
-    private UserService: UserService,
-    private MovieService: MovieService
-  ) {}
+  constructor(private MovieService: MovieService) {}
 
   ngOnInit(): void {
     this.MovieService.getBooks().subscribe((res: any) => {
       this.movieList = res;
-      console.log(this.movieList);
     });
   }
 }

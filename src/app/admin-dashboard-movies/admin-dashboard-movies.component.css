@@ -21,6 +21,7 @@
 .book-container {
   width: 170px;
   height: 320px;
+  box-shadow: rgba(44, 51, 73, 0.1) 0px 8px 16px 0px;
 }
 .book-container-inner-part {
   padding: 10px;
@@ -76,7 +77,7 @@
   padding: 5px;
   width: 120px;
   position: absolute;
-  top: 270px;
+  top: 220px;
   left: 25px;
 }
 .book-atc:hover {

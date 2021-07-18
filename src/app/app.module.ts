@@ -19,6 +19,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserEditAdminComponent } from './user-edit-admin/user-edit-admin.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
+import { AdminDashboardMoviesComponent } from './admin-dashboard-movies/admin-dashboard-movies.component';
+import { MovieEditAdminComponent } from './movie-edit-admin/movie-edit-admin.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-mov
     UserEditAdminComponent,
     MovieListComponent,
     AdminCreateMovieComponent,
+    AdminDashboardMoviesComponent,
+    MovieEditAdminComponent,
   ],
   imports: [
     AppRoutingModule,

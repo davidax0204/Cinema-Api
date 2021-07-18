@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/user");
+const Movie = require("../models/movie");
 const Admin = require("../models/admin");
 const auth = require("../middleware/admin-auth");
 
@@ -62,6 +63,15 @@ router.post("/admin/deleteUser", auth, async (req, res) => {
   }
 });
 
+router.post("/admin/deleteMovie", auth, async (req, res) => {
+  try {
+    const movie = await Movie.findOneAndDelete({ _id: req.body.id });
+    res.status(200).send();
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
 router.post("/admin/isAdmin", auth, async (req, res) => {
   try {
     res.status(200).send();
@@ -79,6 +89,16 @@ router.post("/admin/logout", auth, async (req, res) => {
     res.status(200).send();
   } catch (e) {
     res.status(500).send();
+  }
+});
+
+router.post("/admin/add-movie", auth, async (req, res) => {
+  try {
+    const movie = new Movie(req.body.movie);
+    await movie.save();
+    res.status(200).send();
+  } catch (e) {
+    res.status(400).send();
   }
 });
 

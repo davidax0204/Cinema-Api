@@ -33,12 +33,20 @@ export class AdminService {
     return this.http.post(db + '/admin/deleteUser', { id, localStorage });
   }
 
+  deleteMovie(id) {
+    return this.http.post(db + '/admin/deleteMovie', { id, localStorage });
+  }
+
   isAdmin() {
     return this.http.post(db + '/admin/isAdmin', { localStorage });
   }
 
   logOutAdmin() {
     return this.http.post(db + '/admin/logout', { localStorage });
+  }
+
+  addMovie(movie) {
+    return this.http.post(db + '/admin/add-movie', { localStorage, movie });
   }
 
   getBooks() {
