@@ -1,6 +1,6 @@
-<div *ngFor="let user of users"
-     class="main">
-  <div class="card">
+<div class="main">
+  <div *ngFor="let user of users"
+       class="card">
     <div class="card-container">
       <div class="info"><b style="margin-right: 4px;">First Name:</b>{{user.firstName}}</div>
       <div class="info"><b style="margin-right: 4px;">Last Name:</b>{{user.lastName}}</div>

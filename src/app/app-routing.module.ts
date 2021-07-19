@@ -11,9 +11,11 @@ import { UserEditAdminComponent } from './user-edit-admin/user-edit-admin.compon
 import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
 import { AdminDashboardMoviesComponent } from './admin-dashboard-movies/admin-dashboard-movies.component';
 import { MovieEditAdminComponent } from './movie-edit-admin/movie-edit-admin.component';
+import { MoviePageComponent } from './movie-page/movie-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'movie/:id', component: MoviePageComponent },
   {
     path: 'user',
     component: UserComponent,

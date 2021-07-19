@@ -39,6 +39,17 @@ const movieSchema = new mongoose.Schema({
       type: String,
     },
   ],
+  seats: [
+    {
+      seat: {
+        type: Number,
+      },
+      occupied: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  ],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
   },
@@ -47,11 +58,12 @@ const movieSchema = new mongoose.Schema({
 const Movie = mongoose.model("Movie", movieSchema);
 
 // const movie = async () => {
+//   for (let i = 0; i < 57; i++) {}
 //   const m = new Movie({
-//     name: "BLACK WIDOW2",
-//     writer: "Eric Pearson",
-//     Genre: "Action, Adventure",
-//     Production: "Marvel Studios",
+//     name: "test",
+//     writer: "test",
+//     genre: "test",
+//     production: "Marvel Studios",
 //     description:
 //       "Natasha Romanoff, aka Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by a force that will stop at nothing to bring her down, Natasha must deal with her history as a spy, and the broken relationships left in her wake long before she became an Avenger.",
 //     length: "145",
@@ -67,9 +79,16 @@ const Movie = mongoose.model("Movie", movieSchema);
 //       "22:00-24:00",
 //     ],
 //     location: ["Petach-Tiqva", "Tel-Aviv", "Herzliya", "jerusalem"],
+//     seats: [
+//       { seat: 1, occupied: false },
+//       { seat: 2, occupied: true },
+//       { seat: 3, occupied: true },
+//       { seat: 4, occupied: true },
+//       { seat: 5, occupied: true },
+//     ],
 //   });
 //   try {
-//     // await m.save();
+//     await m.save();
 //   } catch (e) {
 //     console.log(e);
 //   }

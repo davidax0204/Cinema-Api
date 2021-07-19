@@ -60,7 +60,9 @@ export class AdminService {
       editedMovieData,
     });
   }
-
+  getBook(movieId) {
+    return this.http.get(db + `/movie/${movieId}`);
+  }
   getBooks() {
     return this.http.get(db + '/books');
   }

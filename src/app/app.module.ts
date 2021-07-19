@@ -21,6 +21,7 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
 import { AdminDashboardMoviesComponent } from './admin-dashboard-movies/admin-dashboard-movies.component';
 import { MovieEditAdminComponent } from './movie-edit-admin/movie-edit-admin.component';
+import { MoviePageComponent } from './movie-page/movie-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MovieEditAdminComponent } from './movie-edit-admin/movie-edit-admin.com
     AdminCreateMovieComponent,
     AdminDashboardMoviesComponent,
     MovieEditAdminComponent,
+    MoviePageComponent,
   ],
   imports: [
     AppRoutingModule,

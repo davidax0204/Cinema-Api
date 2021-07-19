@@ -41,6 +41,16 @@ router.post("/admin/getUser", auth, async (req, res) => {
     console.log(e);
   }
 });
+
+router.get("/movie/:id", async (req, res) => {
+  try {
+    const movie = await Movie.findOne({ _id: req.params.id });
+    res.status(200).send(movie);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 router.post("/admin/getMovie", auth, async (req, res) => {
   try {
     const movie = await Movie.findOne({ _id: req.body.id });
@@ -116,6 +126,9 @@ router.post("/admin/logout", auth, async (req, res) => {
 router.post("/admin/add-movie", auth, async (req, res) => {
   try {
     const movie = new Movie(req.body.movie);
+    for (let i = 1; i < 57; i++) {
+      movie.seats.push({ seat: i, occupied: false });
+    }
     await movie.save();
     res.status(200).send();
   } catch (e) {
