@@ -95,7 +95,8 @@
 
       <button type="submit"
               class="registerbtn"
-              [disabled]="!editForm.valid">Submit</button>
+              [disabled]="!editForm.valid"
+              (click)="submitForm()">Submit</button>
     </div>
 
   </form>

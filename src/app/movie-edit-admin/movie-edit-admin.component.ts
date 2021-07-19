@@ -22,6 +22,7 @@ export class MovieEditAdminComponent implements OnInit {
   img;
 
   submitError;
+  editMovieId;
   msg;
   isModalOpen = false;
 
@@ -55,14 +56,17 @@ export class MovieEditAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      console.log(params);
-
-      // this.AdminService.getUser(params.id).subscribe((res: any) => {
-      //   this.profilePage.controls['firstName'].setValue(res.firstName);
-      //   this.profilePage.controls['lastName'].setValue(res.lastName);
-      //   this.profilePage.controls['age'].setValue(res.age);
-      //   this.profilePage.controls['email'].setValue(res.email);
-      // });
+      this.AdminService.getMovie(params.id).subscribe((res: any) => {
+        this.editMovieId = res._id;
+        this.editForm.controls['name'].setValue(res.name);
+        this.editForm.controls['writer'].setValue(res.writer);
+        this.editForm.controls['genre'].setValue(res.genre);
+        this.editForm.controls['production'].setValue(res.production);
+        this.editForm.controls['description'].setValue(res.description);
+        this.editForm.controls['Length'].setValue(res.length);
+        this.editForm.controls['price'].setValue(res.ticketPrice);
+        this.editForm.controls['img'].setValue(res.img);
+      });
     });
   }
 
@@ -122,7 +126,7 @@ export class MovieEditAdminComponent implements OnInit {
 
   submitForm() {
     if (this.editForm.valid) {
-      const newMovie: Movie = {
+      const editedMovie: Movie = {
         name: this.name.value,
         writer: this.writer.value,
         genre: this.genre.value,
@@ -132,7 +136,10 @@ export class MovieEditAdminComponent implements OnInit {
         ticketPrice: this.price.value,
         img: this.img.value,
       };
-      this.AdminService.addMovie(newMovie).subscribe(
+      this.AdminService.changeMovieInfo(
+        editedMovie,
+        this.editMovieId
+      ).subscribe(
         (res) => {
           this.isModalOpen = true;
           this.msg = 'saved';

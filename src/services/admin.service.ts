@@ -18,7 +18,11 @@ export class AdminService {
   }
 
   getUser(id) {
-    return this.http.post(db + '/admin/getUser ', { id, localStorage });
+    return this.http.post(db + '/admin/getUser', { id, localStorage });
+  }
+
+  getMovie(id) {
+    return this.http.post(db + '/admin/getMovie', { id, localStorage });
   }
 
   changeUserInfo(userData, id) {
@@ -47,6 +51,14 @@ export class AdminService {
 
   addMovie(movie) {
     return this.http.post(db + '/admin/add-movie', { localStorage, movie });
+  }
+
+  changeMovieInfo(editedMovieData, id) {
+    return this.http.post(db + '/admin/changeMovie', {
+      id,
+      localStorage,
+      editedMovieData,
+    });
   }
 
   getBooks() {

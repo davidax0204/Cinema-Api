@@ -10,7 +10,7 @@ const movieSchema = new mongoose.Schema({
   writer: {
     type: String,
   },
-  Genre: {
+  genre: {
     type: String,
   },
   production: {

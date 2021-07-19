@@ -2,8 +2,7 @@
   <div class="main-content">
     <div class="main-content-inner-part">
 
-      <a routerLink="/admin-edit-movie/{{movie._id}}"
-         *ngFor="let movie of movieList">
+      <a *ngFor="let movie of movieList">
         <div class="book-container">
           <div class="book-container-inner-part">
             <img src="{{movie.img}}"
@@ -13,6 +12,9 @@
             <button routerLink="/admin-movies"
                     (click)="onDeleteMovieButton(movie._id)"
                     class="book-atc">Delete</button>
+
+            <button routerLink="/admin-edit-movie/{{movie._id}}"
+                    class="book-atc2">Edit</button>
           </div>
         </div>
       </a>
