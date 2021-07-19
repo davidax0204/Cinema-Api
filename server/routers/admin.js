@@ -96,8 +96,9 @@ router.post("/admin/deleteUser", auth, async (req, res) => {
 
 router.post("/admin/deleteMovie", auth, async (req, res) => {
   try {
-    const movie = await Movie.findOneAndDelete({ _id: req.body.id });
-    res.status(200).send();
+    await Movie.findOneAndDelete({ _id: req.body.id });
+    const movies = await Movie.find({});
+    res.status(200).send(movies);
   } catch (e) {
     res.status(400).send();
   }

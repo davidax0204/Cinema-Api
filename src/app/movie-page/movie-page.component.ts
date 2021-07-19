@@ -17,7 +17,7 @@ export class MoviePageComponent implements OnInit {
   length;
   ticketPrice;
   img;
-  seats: [];
+  seats: any[];
 
   constructor(
     private AdminService: AdminService,
@@ -38,7 +38,10 @@ export class MoviePageComponent implements OnInit {
         this.img = res.img;
         this.seats = res.seats;
       });
-      console.log(this.name);
     });
+  }
+
+  isOccupied(seatNumber) {
+    console.log(seatNumber);
   }
 }

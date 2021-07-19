@@ -25,6 +25,8 @@ export class AdminDashboardMoviesComponent implements OnInit {
   }
 
   onDeleteMovieButton(id) {
-    this.AdminService.deleteMovie(id).subscribe();
+    this.AdminService.deleteMovie(id).subscribe((res: any) => {
+      this.movieList = res;
+    });
   }
 }
