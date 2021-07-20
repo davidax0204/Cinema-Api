@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
+import { MovieService } from 'src/services/movie.service';
 
 @Component({
   selector: 'app-movie-page',
@@ -19,9 +20,12 @@ export class MoviePageComponent implements OnInit {
   img;
   seats: any[];
 
+  selectedSeats: any[] = [];
+
   constructor(
     private AdminService: AdminService,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
+    private MovieService: MovieService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +46,32 @@ export class MoviePageComponent implements OnInit {
   }
 
   isOccupied(seatNumber) {
-    console.log(seatNumber);
+    if (this.seats) {
+      if (this.seats[seatNumber - 1].occupied) {
+        return 'occupied';
+      } else {
+        return '';
+      }
+    }
+  }
+
+  selectSeat(seatNumber) {
+    console.log('before', this.selectedSeats);
+    if (this.seats) {
+      if (!this.seats[seatNumber - 1].occupied) {
+        if (this.selectedSeats.includes(seatNumber)) {
+          const index = this.selectedSeats.indexOf(seatNumber);
+          if (index > -1) {
+            this.selectedSeats.splice(index, 1);
+          }
+          console.log('after delete', this.selectedSeats);
+          return false;
+        } else {
+          this.selectedSeats.push(seatNumber);
+          console.log('after adding', this.selectedSeats);
+          return true;
+        }
+      }
+    }
   }
 }

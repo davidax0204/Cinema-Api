@@ -1,3 +1,7 @@
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap"); */
+
+/* @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"); */
+
 .main-content-inner-part-book-page {
   margin-top: 80px;
   margin-left: auto;
@@ -158,10 +162,6 @@ textarea:focus-visible {
   box-shadow: rgba(44, 51, 73, 0.1) 0px 8px 16px 0px;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
-
 * {
   font-family: "Montserrat", sans-serif !important;
   box-sizing: border-box;
@@ -205,7 +205,7 @@ textarea:focus-visible {
 }
 
 .selected {
-  background-color: #0081cb;
+  background-color: red;
 }
 
 .occupied {

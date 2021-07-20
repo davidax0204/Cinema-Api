@@ -15,4 +15,18 @@ router.get("/movies", async (req, res) => {
   }
 });
 
+router.post("/movie-seat-color", async (req, res) => {
+  try {
+    const movie = await Movie.findOne({ _id: req.body.movieId });
+    if (movie.seats[req.body.seatNumber].occupied) {
+      res.status(200).send(true);
+    } else {
+      res.status(200).send(false);
+    }
+    // console.log(movieSeat);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 module.exports = router;
