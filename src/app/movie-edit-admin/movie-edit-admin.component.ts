@@ -20,6 +20,8 @@ export class MovieEditAdminComponent implements OnInit {
   Length;
   price;
   img;
+  locations;
+  times;
 
   submitError;
   editMovieId;
@@ -42,6 +44,8 @@ export class MovieEditAdminComponent implements OnInit {
       Length: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(1)]],
       img: ['', Validators.required],
+      times: ['', Validators.required],
+      locations: ['', Validators.required],
     });
 
     this.name = this.editForm.get('name');
@@ -52,6 +56,8 @@ export class MovieEditAdminComponent implements OnInit {
     this.Length = this.editForm.get('Length');
     this.price = this.editForm.get('price');
     this.img = this.editForm.get('img');
+    this.times = this.editForm.get('times');
+    this.locations = this.editForm.get('locations');
   }
 
   ngOnInit(): void {
@@ -66,6 +72,8 @@ export class MovieEditAdminComponent implements OnInit {
         this.editForm.controls['Length'].setValue(res.length);
         this.editForm.controls['price'].setValue(res.ticketPrice);
         this.editForm.controls['img'].setValue(res.img);
+        this.editForm.controls['times'].setValue(res.times);
+        this.editForm.controls['locations'].setValue(res.locations);
       });
     });
   }
@@ -120,12 +128,25 @@ export class MovieEditAdminComponent implements OnInit {
     }
   }
 
+  invalidLocationMessage() {
+    if (this.locations.errors?.required) {
+      return 'You must enter a movie locations';
+    }
+  }
+
+  invalidTimesMessage() {
+    if (this.times.errors?.required) {
+      return 'You must enter a movie times';
+    }
+  }
+
   onClickCloseModal() {
     this.isModalOpen = false;
   }
 
   submitForm() {
     if (this.editForm.valid) {
+      console.log(this.locations.value);
       const editedMovie: Movie = {
         name: this.name.value,
         writer: this.writer.value,

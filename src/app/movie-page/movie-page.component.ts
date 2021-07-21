@@ -56,7 +56,7 @@ export class MoviePageComponent implements OnInit {
 
   isOccupied(seatNumber) {
     if (this.seats) {
-      if (this.seats[seatNumber - 1].occupied) {
+      if (this.seats[seatNumber].occupied) {
         return 'occupied';
       } else {
         return '';
@@ -64,10 +64,13 @@ export class MoviePageComponent implements OnInit {
     }
   }
 
+  onClickCloseModalOrder() {
+    this.isOrderModalOpen = false;
+  }
   selectSeat(seatNumber, event) {
     // console.log('before', this.selectedSeats);
     if (this.seats) {
-      if (!this.seats[seatNumber - 1].occupied) {
+      if (!this.seats[seatNumber].occupied) {
         if (this.selectedSeats.includes(seatNumber)) {
           const index = this.selectedSeats.indexOf(seatNumber);
           if (index > -1) {
@@ -92,6 +95,11 @@ export class MoviePageComponent implements OnInit {
     this.isModalOpen = false;
   }
 
+  isOrderModalOpen = false;
+
+  openOrderModal() {
+    this.isOrderModalOpen = true;
+  }
   onClickAddToCartButton() {
     if (
       this.selectedSeats.length > 0 &&

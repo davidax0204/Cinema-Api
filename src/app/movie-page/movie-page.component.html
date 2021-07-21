@@ -5,7 +5,7 @@
         <img src="https://resizing.flixster.com/KLCX9xZetECtMOclxgNlu7VM9OU=/fit-in/200x296.2962962962963/v1.bTsxMzg1MjA2NDtqOzE4ODgwOzEyMDA7MTY4ODsyNTAw"
              alt="">
         <div>{{ticketPrice}}$</div>
-        <button>Add to cart</button>
+        <button (click)="openOrderModal()">Add to cart</button>
       </div>
       <div class="book-upper-part-main-content">
         <div class="book-upper-part-main-content-title">{{name}}</div>
@@ -22,6 +22,131 @@
       </div>
     </div>
 
+    <!-- <div class="movie-sitting-part">
+      <div class="movie-container">
+        <label>Pick a teather: </label>
+        <select [(ngModel)]="selectedLocation"
+                id="movie">
+          <option [value]="location"
+                  *ngFor="let location of locations">{{location}}</option>
+        </select>
+
+        <label>Pick a Time: </label>
+        <select [(ngModel)]="selectedTime"
+                id="movie">
+          <option [value]="time"
+                  *ngFor="let time of times">{{time}}</option>
+        </select>
+
+        <ul class="showcase">
+          <li>
+            <div class="seat"></div>
+            <small>N/A</small>
+          </li>
+          <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+          </li>
+          <li>
+            <div class="seat occupied"></div>
+            <small>Occupied</small>
+          </li>
+        </ul>
+
+        <div class="container">
+          <div class="screen"></div>
+
+          <div class="row">
+            <div class="seat"
+                 *ngFor="let number of [1,2,3,4,5,6,7,8]"
+                 [ngClass]="isOccupied(number)"
+                 (click)="selectSeat(number,$event)"></div>
+          </div>
+
+
+          <div class="row">
+            <div *ngFor="let number of [9,10,11,12,13,14,15,16]"
+                 class="seat"
+                 [ngClass]="isOccupied(number)"
+                 (click)="selectSeat(number,$event)"></div>
+          </div>
+
+
+          <div class="row">
+            <div *ngFor="let number of [17,18,19,20,21,22,23,24]"
+                 class="seat"
+                 [ngClass]="isOccupied(number)"
+                 (click)="selectSeat(number,$event)"></div>
+          </div>
+
+
+          <div class="row">
+            <div *ngFor="let number of [25,26,27,28,29,30,31,32]"
+                 class="seat"
+                 [ngClass]="isOccupied(number)"
+                 (click)="selectSeat(number,$event)"></div>
+          </div>
+
+
+          <div class="row">
+            <div *ngFor="let number of [33,34,35,36,37,38,39,40]"
+                 class="seat"
+                 [ngClass]="isOccupied(number)"
+                 (click)="selectSeat(number,$event)"></div>
+          </div>
+
+
+          <div class="row">
+            <div *ngFor="let number of [41,42,43,44,45,46,47,48]"
+                 class="seat"
+                 [ngClass]="isOccupied(number)"
+                 (click)="selectSeat(number,$event)"></div>
+          </div>
+
+
+          <div class="row">
+            <div *ngFor="let number of [49,50,51,52,53,54,55,56]"
+                 class="seat"
+                 [ngClass]="isOccupied(number)"
+                 (click)="selectSeat(number,$event)">
+            </div>
+          </div>
+          <div style="margin-top: 10px;">Teather: {{selectedLocation}}</div>
+          <div>Time: {{selectedTime}}</div>
+          <div>Seats:
+            <span *ngFor="let seat of selectedSeats">{{seat}},</span>
+          </div>
+          <div>Price: {{selectedSeats.length * ticketPrice}}$</div>
+          <button (click)="onClickAddToCartButton()">Order</button>
+
+        </div>
+      </div>
+    </div> -->
+
+    <div class="book-middle-part">
+      <div class="book-middle-part-title">Movie details</div>
+      <hr>
+      <div class="book-details-container">
+        <div class="book-details-left">
+          <div><b>Genre: </b> {{genre}}</div>
+          <div><b>Production: </b> {{production}}</div>
+
+        </div>
+        <div class="book-details-right">
+          <div><b>Length: </b> {{length}}</div>
+          <div><b>Language: </b>English</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModal"
+     *ngIf="isOrderModalOpen"
+     class="modal">
+  <div class="modal-content">
+    <span (click)="onClickCloseModalOrder()"
+          class="close">&times;</span>
     <div class="movie-sitting-part">
       <div class="movie-container">
         <label>Pick a teather: </label>
@@ -119,29 +244,14 @@
           <div>Price: {{selectedSeats.length * ticketPrice}}$</div>
           <button (click)="onClickAddToCartButton()">Order</button>
           <!-- <p class="text">
-            You have selected <span id="count">0</span> seats for the total price of Rs. <span id="total">0</span>
-          </p> -->
-        </div>
-      </div>
-    </div>
-
-    <div class="book-middle-part">
-      <div class="book-middle-part-title">Movie details</div>
-      <hr>
-      <div class="book-details-container">
-        <div class="book-details-left">
-          <div><b>Genre: </b> {{genre}}</div>
-          <div><b>Production: </b> {{production}}</div>
-
-        </div>
-        <div class="book-details-right">
-          <div><b>Length: </b> {{length}}</div>
-          <div><b>Language: </b>English</div>
+                  You have selected <span id="count">0</span> seats for the total price of Rs. <span id="total">0</span>
+                </p> -->
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div id="myModal"
      *ngIf="isModalOpen"
      class="modal">

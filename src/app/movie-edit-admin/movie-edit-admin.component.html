@@ -91,6 +91,26 @@
       <div class="invalid-message"
            *ngIf="img.touched && img.invalid">{{invalidiImgMessage()}}</div>
 
+      <div class="sign-up-line-wrap">
+        <label><b>Locations</b></label>
+        <input type="text"
+               placeholder="Enter movie locations and seperate them by ','"
+               formControlName="locations">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="locations.touched && locations.invalid">{{invalidLocationMessage()}}</div>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Times</b></label>
+        <input type="text"
+               placeholder="Enter movie times and seperate them by ','"
+               formControlName="times">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="times.touched && times.invalid">{{invalidTimesMessage()}}</div>
+
       <hr>
 
       <button type="submit"
