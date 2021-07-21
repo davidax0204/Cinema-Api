@@ -7,4 +7,6 @@ export interface Movie {
   length: string;
   ticketPrice: number;
   img: string;
+  locations?: string[];
+  times?: string[];
 }

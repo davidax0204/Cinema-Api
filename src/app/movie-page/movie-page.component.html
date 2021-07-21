@@ -25,11 +25,17 @@
     <div class="movie-sitting-part">
       <div class="movie-container">
         <label>Pick a teather: </label>
-        <select id="movie">
-          <option value="250">Interstellar (Rs. 250)</option>
-          <option value="200">Kabir Singh (Rs. 200)</option>
-          <option value="150">Duniyadari (Rs. 150)</option>
-          <option value="100">Natsamrat (Rs. 100)</option>
+        <select [(ngModel)]="selectedLocation"
+                id="movie">
+          <option [value]="location"
+                  *ngFor="let location of locations">{{location}}</option>
+        </select>
+
+        <label>Pick a Time: </label>
+        <select [(ngModel)]="selectedTime"
+                id="movie">
+          <option [value]="time"
+                  *ngFor="let time of times">{{time}}</option>
         </select>
 
         <ul class="showcase">
@@ -54,7 +60,7 @@
             <div class="seat"
                  *ngFor="let number of [1,2,3,4,5,6,7,8]"
                  [ngClass]="isOccupied(number)"
-                 (click)="selectSeat(number)"></div>
+                 (click)="selectSeat(number,$event)"></div>
           </div>
 
 
@@ -62,7 +68,7 @@
             <div *ngFor="let number of [9,10,11,12,13,14,15,16]"
                  class="seat"
                  [ngClass]="isOccupied(number)"
-                 (click)="selectSeat(number)"></div>
+                 (click)="selectSeat(number,$event)"></div>
           </div>
 
 
@@ -70,7 +76,7 @@
             <div *ngFor="let number of [17,18,19,20,21,22,23,24]"
                  class="seat"
                  [ngClass]="isOccupied(number)"
-                 (click)="selectSeat(number)"></div>
+                 (click)="selectSeat(number,$event)"></div>
           </div>
 
 
@@ -78,7 +84,7 @@
             <div *ngFor="let number of [25,26,27,28,29,30,31,32]"
                  class="seat"
                  [ngClass]="isOccupied(number)"
-                 (click)="selectSeat(number)"></div>
+                 (click)="selectSeat(number,$event)"></div>
           </div>
 
 
@@ -86,7 +92,7 @@
             <div *ngFor="let number of [33,34,35,36,37,38,39,40]"
                  class="seat"
                  [ngClass]="isOccupied(number)"
-                 (click)="selectSeat(number)"></div>
+                 (click)="selectSeat(number,$event)"></div>
           </div>
 
 
@@ -94,8 +100,7 @@
             <div *ngFor="let number of [41,42,43,44,45,46,47,48]"
                  class="seat"
                  [ngClass]="isOccupied(number)"
-                 (click)="selectSeat(number)"
-                 [ngClass]="selectSeat(number)?'selected':''"></div>
+                 (click)="selectSeat(number,$event)"></div>
           </div>
 
 
@@ -103,13 +108,18 @@
             <div *ngFor="let number of [49,50,51,52,53,54,55,56]"
                  class="seat"
                  [ngClass]="isOccupied(number)"
-                 (click)="selectSeat(number)"
-                 [ngClass]="selectSeat(number)?'selected':''"></div>
+                 (click)="selectSeat(number,$event)">
+            </div>
           </div>
-
-          <p class="text">
+          <div style="margin-top: 10px;">Teather: {{selectedLocation}}</div>
+          <div>Time: {{selectedTime}}</div>
+          <div>Seats:
+            <div *ngFor="let seat of selectedSeats">{{seat}}</div>
+          </div>
+          <button (click)="onClickAddToCartButton()">Order</button>
+          <!-- <p class="text">
             You have selected <span id="count">0</span> seats for the total price of Rs. <span id="total">0</span>
-          </p>
+          </p> -->
         </div>
       </div>
     </div>

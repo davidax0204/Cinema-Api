@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { MovieService } from 'src/services/movie.service';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-movie-page',
@@ -18,14 +19,19 @@ export class MoviePageComponent implements OnInit {
   length;
   ticketPrice;
   img;
+  locations: any[];
+  times: any[];
   seats: any[];
 
+  selectedLocation;
+  selectedTime;
   selectedSeats: any[] = [];
 
   constructor(
     private AdminService: AdminService,
     private activeRouter: ActivatedRoute,
-    private MovieService: MovieService
+    private MovieService: MovieService,
+    private UserService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +47,8 @@ export class MoviePageComponent implements OnInit {
         this.ticketPrice = res.ticketPrice;
         this.img = res.img;
         this.seats = res.seats;
+        this.locations = res.locations;
+        this.times = res.times;
       });
     });
   }
@@ -55,8 +63,8 @@ export class MoviePageComponent implements OnInit {
     }
   }
 
-  selectSeat(seatNumber) {
-    console.log('before', this.selectedSeats);
+  selectSeat(seatNumber, event) {
+    // console.log('before', this.selectedSeats);
     if (this.seats) {
       if (!this.seats[seatNumber - 1].occupied) {
         if (this.selectedSeats.includes(seatNumber)) {
@@ -64,14 +72,32 @@ export class MoviePageComponent implements OnInit {
           if (index > -1) {
             this.selectedSeats.splice(index, 1);
           }
-          console.log('after delete', this.selectedSeats);
+          event.srcElement.classList.remove('selected');
+          // console.log('after delete', this.selectedSeats);
           return false;
         } else {
           this.selectedSeats.push(seatNumber);
-          console.log('after adding', this.selectedSeats);
+          event.srcElement.classList.add('selected');
+          // console.log('after adding', this.selectedSeats);
           return true;
         }
       }
+    }
+  }
+
+  onClickAddToCartButton() {
+    if (
+      this.selectedSeats.length > 0 &&
+      this.selectedTime &&
+      this.selectedLocation
+    ) {
+      this.UserService.addMovieToCart(
+        this.selectedSeats,
+        this.selectedTime,
+        this.selectedLocation
+      ).subscribe();
+    } else {
+      console.log('no');
     }
   }
 }

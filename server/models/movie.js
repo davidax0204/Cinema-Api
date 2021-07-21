@@ -29,12 +29,12 @@ const movieSchema = new mongoose.Schema({
   img: {
     type: String,
   },
-  time: [
+  times: [
     {
       type: String,
     },
   ],
-  location: [
+  locations: [
     {
       type: String,
     },

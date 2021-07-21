@@ -133,6 +133,7 @@ router.post("/admin/add-movie", auth, async (req, res) => {
     await movie.save();
     res.status(200).send();
   } catch (e) {
+    console.log(e);
     res.status(400).send();
   }
 });

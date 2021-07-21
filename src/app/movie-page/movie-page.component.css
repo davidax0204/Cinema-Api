@@ -158,7 +158,6 @@ textarea:focus-visible {
 .movie-sitting-part {
   margin-top: 10px;
   margin-bottom: 10px;
-  height: 500px;
   box-shadow: rgba(44, 51, 73, 0.1) 0px 8px 16px 0px;
 }
 
@@ -176,10 +175,10 @@ textarea:focus-visible {
 }
 
 .movie-container select {
-  appearance: none;
+  /* appearance: none;
   -moz-appearance: none;
-  -webkit-appearance: none;
-  border: 0;
+  -webkit-appearance: none; */
+  /* border: 0; */
   padding: 5px 15px;
   margin-bottom: 40px;
   font-size: 14px;
@@ -260,7 +259,7 @@ textarea:focus-visible {
 .screen {
   background: #2196f3;
   height: 70px;
-  width: 70%;
+  width: 500px;
   margin: 15px 0;
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px #2196f3(255, 255, 255, 0.7);
@@ -278,4 +277,15 @@ p.text span {
 
 .credits a {
   color: #fff;
+}
+
+button {
+  background-color: #2196f3;
+  color: white;
+  padding: 16px 20px;
+  margin: 20px 0;
+  border: none;
+  cursor: pointer;
+  /* width: 50%; */
+  opacity: 0.9;
 }

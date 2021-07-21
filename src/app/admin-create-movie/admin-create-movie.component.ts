@@ -26,6 +26,8 @@ export class AdminCreateMovieComponent implements OnInit {
   Length;
   price;
   img;
+  locations;
+  times;
 
   submitError;
   msg;
@@ -46,6 +48,8 @@ export class AdminCreateMovieComponent implements OnInit {
       Length: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(1)]],
       img: ['', Validators.required],
+      locations: ['', Validators.required],
+      times: ['', Validators.required],
     });
 
     this.name = this.editForm.get('name');
@@ -56,6 +60,8 @@ export class AdminCreateMovieComponent implements OnInit {
     this.Length = this.editForm.get('Length');
     this.price = this.editForm.get('price');
     this.img = this.editForm.get('img');
+    this.locations = this.editForm.get('locations');
+    this.times = this.editForm.get('times');
   }
 
   ngOnInit(): void {}
@@ -110,12 +116,28 @@ export class AdminCreateMovieComponent implements OnInit {
     }
   }
 
+  invalidLocationMessage() {
+    if (this.locations.errors?.required) {
+      return 'You must enter a movie locations';
+    }
+  }
+
+  invalidTimesMessage() {
+    if (this.times.errors?.required) {
+      return 'You must enter a movie times';
+    }
+  }
+
   onClickCloseModal() {
     this.isModalOpen = false;
   }
 
   submitForm() {
     if (this.editForm.valid) {
+      let locationArray: any[];
+      locationArray = this.locations.value.split(',', this.locations.length);
+      let timeArray: any[];
+      timeArray = this.times.value.split(',', this.times.length);
       const newMovie: Movie = {
         name: this.name.value,
         writer: this.writer.value,
@@ -125,6 +147,8 @@ export class AdminCreateMovieComponent implements OnInit {
         length: this.Length.value,
         ticketPrice: this.price.value,
         img: this.img.value,
+        locations: locationArray,
+        times: timeArray,
       };
       this.AdminService.addMovie(newMovie).subscribe(
         (res) => {
