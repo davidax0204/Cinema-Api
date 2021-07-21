@@ -114,8 +114,9 @@
           <div style="margin-top: 10px;">Teather: {{selectedLocation}}</div>
           <div>Time: {{selectedTime}}</div>
           <div>Seats:
-            <div *ngFor="let seat of selectedSeats">{{seat}}</div>
+            <span *ngFor="let seat of selectedSeats">{{seat}},</span>
           </div>
+          <div>Price: {{selectedSeats.length * ticketPrice}}$</div>
           <button (click)="onClickAddToCartButton()">Order</button>
           <!-- <p class="text">
             You have selected <span id="count">0</span> seats for the total price of Rs. <span id="total">0</span>
@@ -139,5 +140,14 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div id="myModal"
+     *ngIf="isModalOpen"
+     class="modal">
+  <div class="modal-content">
+    <span (click)="onClickCloseModal()"
+          class="close">&times;</span>
+    <p>You must select a Movie teather, time and seats in order to checkout.</p>
   </div>
 </div>

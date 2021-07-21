@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/user");
+const Movie = require("../models/movie");
 const auth = require("../middleware/auth");
 
 const router = new express.Router();
@@ -79,6 +80,20 @@ router.post("/profile/logOut", auth, async (req, res) => {
       return token.token !== req.token;
     });
     await req.user.save();
+    res.status(200).send();
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
+router.post("/buyTickets", auth, async (req, res) => {
+  try {
+    const movie = await Movie.findOne({ _id: req.body.movieId });
+    // console.log(req.body.selectedSeats);
+    for (let i = 0; i < req.body.selectedSeats.length; i++) {
+      movie.seats[req.body.selectedSeats[i]].occupied = true;
+    }
+    await movie.save();
     res.status(200).send();
   } catch (e) {
     res.status(500).send();

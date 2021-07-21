@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { MovieService } from 'src/services/movie.service';
 import { UserService } from 'src/services/user.service';
@@ -31,7 +31,8 @@ export class MoviePageComponent implements OnInit {
     private AdminService: AdminService,
     private activeRouter: ActivatedRoute,
     private MovieService: MovieService,
-    private UserService: UserService
+    private UserService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -85,19 +86,34 @@ export class MoviePageComponent implements OnInit {
     }
   }
 
+  isModalOpen = false;
+
+  onClickCloseModal() {
+    this.isModalOpen = false;
+  }
+
   onClickAddToCartButton() {
     if (
       this.selectedSeats.length > 0 &&
       this.selectedTime &&
       this.selectedLocation
     ) {
-      this.UserService.addMovieToCart(
+      this.UserService.orderTickets(
         this.selectedSeats,
         this.selectedTime,
-        this.selectedLocation
-      ).subscribe();
+        this.selectedLocation,
+        this.movieId
+      ).subscribe(
+        (res) => {
+          this.router.navigate(['/order-confirmation']);
+        },
+        (error) => {
+          this.router.navigate(['/user']);
+        }
+      );
     } else {
-      console.log('no');
+      this.isModalOpen = true;
+      console.log('here');
     }
   }
 }

@@ -22,6 +22,7 @@ import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-mov
 import { AdminDashboardMoviesComponent } from './admin-dashboard-movies/admin-dashboard-movies.component';
 import { MovieEditAdminComponent } from './movie-edit-admin/movie-edit-admin.component';
 import { MoviePageComponent } from './movie-page/movie-page.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
     AdminDashboardMoviesComponent,
     MovieEditAdminComponent,
     MoviePageComponent,
+    OrderConfirmationComponent,
   ],
   imports: [
     AppRoutingModule,

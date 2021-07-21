@@ -33,10 +33,13 @@ export class UserService {
     return this.http.post(db + '/profile/logOut', { localStorage });
   }
 
-  addMovieToCart(selectedSeats, selectedTime, selectedLocation) {
-    console.log(selectedSeats);
-    console.log(selectedTime);
-    console.log(selectedLocation);
-    return this.http.post(db + '/buyTickets', { localStorage });
+  orderTickets(selectedSeats, selectedTime, selectedLocation, movieId) {
+    return this.http.post(db + '/buyTickets', {
+      localStorage,
+      selectedSeats,
+      selectedTime,
+      selectedLocation,
+      movieId,
+    });
   }
 }

@@ -12,6 +12,7 @@ import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-mov
 import { AdminDashboardMoviesComponent } from './admin-dashboard-movies/admin-dashboard-movies.component';
 import { MovieEditAdminComponent } from './movie-edit-admin/movie-edit-admin.component';
 import { MoviePageComponent } from './movie-page/movie-page.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'admin-edit-movie/:id', component: MovieEditAdminComponent },
   { path: 'create-movie', component: AdminCreateMovieComponent },
   { path: 'admin-movies', component: AdminDashboardMoviesComponent },
+  { path: 'order-confirmation', component: OrderConfirmationComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
