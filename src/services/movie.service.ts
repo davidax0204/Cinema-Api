@@ -16,4 +16,12 @@ export class MovieService {
   isOccupied(seatNumber, movieId) {
     return this.http.post(db + '/movie-seat-color', { seatNumber, movieId });
   }
+
+  getTeathers() {
+    return this.http.get(db + '/teathers');
+  }
+
+  getMoviesFromTeather(teatherId) {
+    return this.http.post(db + '/teather-movies', { teatherId });
+  }
 }

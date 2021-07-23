@@ -1,5 +1,11 @@
 <div class="container">
+
   <div class="main-content">
+    <div class="teathers">
+
+      <button *ngFor="let teather of teathers"
+              (click)="showTeatherMovie(teather._id)">{{teather.name}}</button>
+    </div>
     <div class="main-content-inner-part">
 
       <a *ngFor="let movie of movieList"

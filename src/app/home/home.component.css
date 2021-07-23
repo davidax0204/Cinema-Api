@@ -1,7 +1,13 @@
 .container {
   margin-top: 80px;
 }
-
+.teathers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 .main-content {
   width: 100vw;
   height: 100vh;
@@ -89,4 +95,15 @@ a {
   text-decoration: none !important;
   /* cursor: unset; */
   color: unset;
+}
+
+button {
+  background-color: #2196f3;
+  color: white;
+  padding: 8px 10px;
+  margin: 8px 0;
+  margin-left: 2px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
 }
