@@ -23,6 +23,8 @@ import { AdminDashboardMoviesComponent } from './admin-dashboard-movies/admin-da
 import { MovieEditAdminComponent } from './movie-edit-admin/movie-edit-admin.component';
 import { MoviePageComponent } from './movie-page/movie-page.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { AdminCreateTeatherComponent } from './admin-create-teather/admin-create-teather.component';
+import { AdminDashboardTeathersComponent } from './admin-dashboard-teathers/admin-dashboard-teathers.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
     MovieEditAdminComponent,
     MoviePageComponent,
     OrderConfirmationComponent,
+    AdminCreateTeatherComponent,
+    AdminDashboardTeathersComponent,
   ],
   imports: [
     AppRoutingModule,

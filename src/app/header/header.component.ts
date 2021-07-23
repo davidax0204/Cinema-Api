@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AdminService } from 'src/services/admin.service';
 import { UserService } from 'src/services/user.service';
 
@@ -10,7 +11,8 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  isAdmin = false;
+  isAdmin: boolean;
+  isAdminLoggedSub: Subscription;
 
   constructor(
     private UserService: UserService,
@@ -33,7 +35,17 @@ export class HeaderComponent implements OnInit {
         this.fun(false);
       }
     );
+
+    // this.isAdminLoggedSub = this.AdminService.isAdminLogged.subscribe(
+    //   (isAdminLogged) => {
+    //     this.isAdmin = isAdminLogged;
+    //   }
+    // );
   }
+
+  // ngOnDestroy() {
+  //   this.isAdminLoggedSub.unsubscribe();
+  // }
 
   onClickProfileButton() {
     this.UserService.userProfile().subscribe(

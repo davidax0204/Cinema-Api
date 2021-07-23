@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/user");
 const Movie = require("../models/movie");
+const Teather = require("../models/teather");
 const Admin = require("../models/admin");
 const auth = require("../middleware/admin-auth");
 
@@ -131,6 +132,27 @@ router.post("/admin/add-movie", auth, async (req, res) => {
       movie.seats.push({ seat: i, occupied: false });
     }
     await movie.save();
+    res.status(200).send();
+  } catch (e) {
+    console.log(e);
+    res.status(400).send();
+  }
+});
+
+router.post("/admin/add-teather", auth, async (req, res) => {
+  try {
+    const teather = new Teather(req.body.teather);
+    for (let movie = 0; movie < req.body.teather.movies.length; movie++) {
+      const findMovie = await Movie.findOne({
+        _id: req.body.teather.movies[movie],
+      });
+      findMovie.seats = [];
+      for (let i = 1; i < teather.seats + 1; i++) {
+        findMovie.seats.push({ seat: i, occupied: false });
+      }
+      await findMovie.save();
+    }
+    await teather.save();
     res.status(200).send();
   } catch (e) {
     console.log(e);

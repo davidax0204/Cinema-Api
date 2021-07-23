@@ -1,0 +1,61 @@
+<div class="main-content-inner-part">
+  <form id="sign-up-form"
+        (ngSubmit)="submitForm()"
+        [formGroup]="createTeatherForm">
+    <div class="container">
+      <h1>Create Movie</h1>
+
+      <hr>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Name</b></label>
+        <input type="text"
+               placeholder="Enter the name of the teather"
+               formControlName="name">
+      </div>
+      <div class="invalid-message"
+           *ngIf="name.touched && name.invalid">{{invalidNameMessage()}}</div>
+
+
+
+      <div class="sign-up-line-wrap">
+        <label><b>Seats</b></label>
+        <input type="number"
+               placeholder="Enter the writer of the movie"
+               formControlName="seats">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="seats.touched && seats.invalid">{{invalidSeatsMessage()}}</div>
+
+      <div class="sign-up-line-wrap">
+        <label><b>Movies</b></label>
+        <input type="text"
+               placeholder="Enter the list of movies for this teather seprated by ','"
+               formControlName="movies">
+      </div>
+
+      <div class="invalid-message"
+           *ngIf="movies.touched && movies.invalid">{{invalidMoviesMessage()}}</div>
+
+
+
+      <hr>
+
+      <button type="submit"
+              class="registerbtn"
+              [disabled]="!createTeatherForm.valid">Submit</button>
+    </div>
+
+  </form>
+
+</div>
+<div id="myModal"
+     *ngIf="isModalOpen"
+     class="modal">
+  <div class="modal-content">
+    <span (click)="onClickCloseModal()"
+          class="close">&times;</span>
+    <p>{{msg}}.</p>
+  </div>
+</div>

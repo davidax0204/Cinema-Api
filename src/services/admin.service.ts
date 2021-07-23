@@ -3,10 +3,13 @@ import { User } from '../models/user.nodel';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Subject } from 'rxjs';
 const db = environment.NODEJS_SERVER;
 
 @Injectable()
 export class AdminService {
+  isAdminLogged = new Subject<boolean>();
+
   constructor(private http: HttpClient, private router: Router) {}
 
   adminLogIn(email, password) {
@@ -51,6 +54,10 @@ export class AdminService {
 
   addMovie(movie) {
     return this.http.post(db + '/admin/add-movie', { localStorage, movie });
+  }
+
+  addTeather(teather) {
+    return this.http.post(db + '/admin/add-teather', { localStorage, teather });
   }
 
   changeMovieInfo(editedMovieData, id) {
