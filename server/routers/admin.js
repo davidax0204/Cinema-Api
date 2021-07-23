@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../models/user");
 const Movie = require("../models/movie");
 const Teather = require("../models/teather");
+const Screening = require("../models/screening");
 const Admin = require("../models/admin");
 const auth = require("../middleware/admin-auth");
 
@@ -47,6 +48,15 @@ router.get("/movie/:id", async (req, res) => {
   try {
     const movie = await Movie.findOne({ _id: req.params.id });
     res.status(200).send(movie);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get("/screenings", async (req, res) => {
+  try {
+    const screenings = await Screening.find({});
+    res.status(200).send(screenings);
   } catch (e) {
     console.log(e);
   }
@@ -127,6 +137,17 @@ router.post("/admin/deleteTeather", auth, async (req, res) => {
   }
 });
 
+router.post("/admin/deleteScreening", auth, async (req, res) => {
+  try {
+    await Screening.findOneAndDelete({ _id: req.body.screeningId });
+    const screening = await Screening.find({});
+    res.status(200).send(screening);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send();
+  }
+});
+
 router.post("/admin/isAdmin", auth, async (req, res) => {
   try {
     res.status(200).send();
@@ -178,6 +199,16 @@ router.post("/admin/add-teather", auth, async (req, res) => {
     res.status(200).send();
   } catch (e) {
     console.log(e);
+    res.status(400).send();
+  }
+});
+
+router.post("/admin/add-screening", auth, async (req, res) => {
+  try {
+    const screening = new Screening(req.body.screening);
+    await screening.save();
+    res.status(200).send();
+  } catch (e) {
     res.status(400).send();
   }
 });

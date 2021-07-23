@@ -25,6 +25,8 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { AdminCreateTeatherComponent } from './admin-create-teather/admin-create-teather.component';
 import { AdminDashboardTeathersComponent } from './admin-dashboard-teathers/admin-dashboard-teathers.component';
+import { AdminDashboardScreeningComponent } from './admin-dashboard-screening/admin-dashboard-screening.component';
+import { AdminCreateScreeningComponent } from './admin-create-screening/admin-create-screening.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { AdminDashboardTeathersComponent } from './admin-dashboard-teathers/admi
     OrderConfirmationComponent,
     AdminCreateTeatherComponent,
     AdminDashboardTeathersComponent,
+    AdminDashboardScreeningComponent,
+    AdminCreateScreeningComponent,
   ],
   imports: [
     AppRoutingModule,

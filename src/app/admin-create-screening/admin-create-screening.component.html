@@ -3,14 +3,14 @@
         (ngSubmit)="submitForm()"
         [formGroup]="createTeatherForm">
     <div class="container">
-      <h1>Create Teather</h1>
+      <h1>Create Screening</h1>
 
       <hr>
 
       <div class="sign-up-line-wrap">
         <label><b>Name</b></label>
         <input type="text"
-               placeholder="Enter the name of the teather"
+               placeholder="Enter the name of the screening"
                formControlName="name">
       </div>
       <div class="invalid-message"
@@ -19,27 +19,24 @@
 
 
       <div class="sign-up-line-wrap">
-        <label><b>Seats</b></label>
-        <input type="number"
-               placeholder="Enter the writer of the movie"
-               formControlName="seats">
+        <label><b>Times</b></label>
+        <input type="text"
+               placeholder="Enter the list of hours for this screening seprated by ','"
+               formControlName="times">
       </div>
 
       <div class="invalid-message"
-           *ngIf="seats.touched && seats.invalid">{{invalidSeatsMessage()}}</div>
+           *ngIf="times.touched && times.invalid">{{invalidTimesMessage()}}</div>
 
       <div class="sign-up-line-wrap">
-        <label><b>Movies</b></label>
+        <label><b>Teathers</b></label>
         <input type="text"
-               placeholder="Enter the list of movies for this teather seprated by ','"
-               formControlName="movies">
+               placeholder="Enter the list of teathers for this screening seprated by ','"
+               formControlName="teathers">
       </div>
 
       <div class="invalid-message"
-           *ngIf="movies.touched && movies.invalid">{{invalidMoviesMessage()}}</div>
-
-
-
+           *ngIf="teathers.touched && teathers.invalid">{{invalidTeathersMessage()}}</div>
       <hr>
 
       <button type="submit"

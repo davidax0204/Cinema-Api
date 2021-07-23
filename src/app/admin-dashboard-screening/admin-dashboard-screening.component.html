@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="main-content">
+    <div class="main-content-inner-part">
+
+      <a *ngFor="let screening of screenings">
+        <div class="book-container">
+          <div class="book-container-inner-part">
+
+            <span class="book-title">{{screening.name}}</span>
+            <div class="book-title">times:
+              <span *ngFor="let hour of screening.times">{{hour}},</span>
+            </div>
+            <span class="book-title">teathers:
+              <div *ngFor="let teather of screening.teathers">{{teather}}</div>
+            </span>
+            <button (click)="deleteScreening(screening._id)"
+                    class="book-atc">Delete</button>
+            <!--
+            <button routerLink="/admin-edit-movie/{{movie._id}}"
+                    class="book-atc2">Edit</button> -->
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>

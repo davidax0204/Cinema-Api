@@ -60,6 +60,13 @@ export class AdminService {
     return this.http.post(db + '/admin/add-teather', { localStorage, teather });
   }
 
+  addScreening(screening) {
+    return this.http.post(db + '/admin/add-screening', {
+      localStorage,
+      screening,
+    });
+  }
+
   changeMovieInfo(editedMovieData, id) {
     return this.http.post(db + '/admin/changeMovie', {
       id,
@@ -78,9 +85,20 @@ export class AdminService {
     return this.http.get(db + '/teathers');
   }
 
+  getScreenings() {
+    return this.http.get(db + '/screenings');
+  }
+
   removeTeather(theatherId) {
     return this.http.post(db + '/admin/deleteTeather', {
       theatherId,
+      localStorage,
+    });
+  }
+
+  removeScreening(screeningId) {
+    return this.http.post(db + '/admin/deleteScreening', {
+      screeningId,
       localStorage,
     });
   }
