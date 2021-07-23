@@ -124,4 +124,8 @@ export class MoviePageComponent implements OnInit {
       console.log('here');
     }
   }
+
+  isExistedRow(rowNumber) {
+    return true;
+  }
 }

@@ -1,1 +1,25 @@
-<p>admin-dashboard-teathers works!</p>
+<div class="container">
+  <div class="main-content">
+    <div class="main-content-inner-part">
+
+      <a *ngFor="let teather of teathers">
+        <div class="book-container">
+          <div class="book-container-inner-part">
+
+            <span class="book-title">{{teather.name}}</span>
+            <span class="book-title">seats:{{teather.seats}}</span>
+            <span class="book-title">movies:
+              <div *ngFor="let movie of teather.movies">{{movie}}</div>
+            </span>
+            <button (click)="deleteTeather(teather._id)"
+                    class="book-atc">Delete</button>
+            <!--
+            <button routerLink="/admin-edit-movie/{{movie._id}}"
+                    class="book-atc2">Edit</button> -->
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>

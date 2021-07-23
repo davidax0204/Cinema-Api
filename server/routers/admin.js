@@ -52,6 +52,17 @@ router.get("/movie/:id", async (req, res) => {
   }
 });
 
+router.get("/teathers", async (req, res) => {
+  console.log("asd");
+  try {
+    const teathers = await Teather.find({});
+    console.log(teathers);
+    // res.status(200).send(movie);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 router.post("/admin/getMovie", auth, async (req, res) => {
   try {
     const movie = await Movie.findOne({ _id: req.body.id });
@@ -101,6 +112,17 @@ router.post("/admin/deleteMovie", auth, async (req, res) => {
     const movies = await Movie.find({});
     res.status(200).send(movies);
   } catch (e) {
+    res.status(400).send();
+  }
+});
+
+router.post("/admin/deleteTeather", auth, async (req, res) => {
+  try {
+    await Teather.findOneAndDelete({ _id: req.body.theatherId });
+    const teathers = await Teather.find({});
+    res.status(200).send(teathers);
+  } catch (e) {
+    console.log(e);
     res.status(400).send();
   }
 });

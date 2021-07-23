@@ -73,4 +73,15 @@ export class AdminService {
   getBooks() {
     return this.http.get(db + '/books');
   }
+
+  getTeathers() {
+    return this.http.get(db + '/teathers');
+  }
+
+  removeTeather(theatherId) {
+    return this.http.post(db + '/admin/deleteTeather', {
+      theatherId,
+      localStorage,
+    });
+  }
 }
