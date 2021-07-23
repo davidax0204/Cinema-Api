@@ -11,6 +11,7 @@ import { UserService } from 'src/services/user.service';
 })
 export class MoviePageComponent implements OnInit {
   movieId;
+
   name;
   writer;
   genre;
@@ -23,6 +24,7 @@ export class MoviePageComponent implements OnInit {
   times: any[];
   seats: any[];
 
+  screening;
   selectedLocation;
   selectedTime;
   selectedSeats: any[] = [];
@@ -50,6 +52,9 @@ export class MoviePageComponent implements OnInit {
         this.seats = res.seats;
         this.locations = res.locations;
         this.times = res.times;
+      });
+      this.MovieService.getScreening(this.movieId).subscribe((res: any) => {
+        this.screening = res;
       });
     });
   }
@@ -101,11 +106,7 @@ export class MoviePageComponent implements OnInit {
     this.isOrderModalOpen = true;
   }
   onClickAddToCartButton() {
-    if (
-      this.selectedSeats.length > 0 &&
-      this.selectedTime &&
-      this.selectedLocation
-    ) {
+    if (this.selectedSeats.length > 0 && this.selectedTime) {
       this.UserService.orderTickets(
         this.selectedSeats,
         this.selectedTime,

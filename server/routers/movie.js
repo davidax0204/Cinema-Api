@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/user");
 const Teather = require("../models/teather");
+const Screening = require("../models/screening");
 const Admin = require("../models/admin");
 const auth = require("../middleware/admin-auth");
 const Movie = require("../models/movie");
@@ -35,6 +36,17 @@ router.post("/teather-movies", async (req, res) => {
       console.log(movie);
     }
     res.status(200).send(movieList);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.post("/getTeather", async (req, res) => {
+  try {
+    const movie = await Movie.findOne({ _id: req.body.movieId });
+    const teaher = await Teather.findOne({ movies: movie._id });
+    const screening = await Screening.findOne({ teathers: teaher._id });
+    res.status(200).send(screening);
   } catch (e) {
     console.log(e);
   }

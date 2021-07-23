@@ -149,18 +149,18 @@
           class="close">&times;</span>
     <div class="movie-sitting-part">
       <div class="movie-container">
-        <label>Pick a teather: </label>
+        <!-- <label>Pick a teather: </label>
         <select [(ngModel)]="selectedLocation"
                 id="movie">
           <option [value]="location"
                   *ngFor="let location of locations">{{location}}</option>
-        </select>
+        </select> -->
 
         <label>Pick a Time: </label>
         <select [(ngModel)]="selectedTime"
                 id="movie">
           <option [value]="time"
-                  *ngFor="let time of times">{{time}}</option>
+                  *ngFor="let time of screening.times">{{time}}</option>
         </select>
 
         <ul class="showcase">

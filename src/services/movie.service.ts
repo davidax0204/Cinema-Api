@@ -24,4 +24,8 @@ export class MovieService {
   getMoviesFromTeather(teatherId) {
     return this.http.post(db + '/teather-movies', { teatherId });
   }
+
+  getScreening(movieId) {
+    return this.http.post(db + '/getTeather', { movieId });
+  }
 }
