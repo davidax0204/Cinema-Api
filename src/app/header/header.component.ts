@@ -26,26 +26,26 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.AdminService.isAdmin().subscribe(
-      (res) => {
-        this.fun(true);
-        console.log('yes');
-      },
-      (error) => {
-        this.fun(false);
-      }
-    );
-
-    // this.isAdminLoggedSub = this.AdminService.isAdminLogged.subscribe(
-    //   (isAdminLogged) => {
-    //     this.isAdmin = isAdminLogged;
+    // this.AdminService.isAdmin().subscribe(
+    //   (res) => {
+    //     this.fun(true);
+    //     console.log('yes');
+    //   },
+    //   (error) => {
+    //     this.fun(false);
     //   }
     // );
+
+    this.isAdminLoggedSub = this.AdminService.isAdminLogged.subscribe(
+      (isAdminLogged) => {
+        this.isAdmin = isAdminLogged;
+      }
+    );
   }
 
-  // ngOnDestroy() {
-  //   this.isAdminLoggedSub.unsubscribe();
-  // }
+  ngOnDestroy() {
+    this.isAdminLoggedSub.unsubscribe();
+  }
 
   onClickProfileButton() {
     this.UserService.userProfile().subscribe(
